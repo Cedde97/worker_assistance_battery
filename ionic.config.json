@@ -1,0 +1,7 @@
+{
+  "name": "worker_assistance_battery",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
