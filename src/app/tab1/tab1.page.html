@@ -5,15 +5,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+    <!-- ngx-scanner-qrcode -->
+    <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
+
+    <!-- loading -->
+    <p *ngIf="action.isLoading">⌛ Loading...</p>
+</ion-content>
+
+<ion-content>
+    <ion-fab-button (click)="scan(action, action.isStart ? 'stop' : 'start')">
+      <ion-icon name="scan"></ion-icon>
+    </ion-fab-button>
+</ion-content>
+
+<ion-content>
+  <ion-list *ngIf="isDesktop">
+    <ion-item *ngFor="let scannedResult of scannedResults">
+      <ion-label position="stacked">{{ scannedResult }}</ion-label>
+      <ion-input type="text" [value]="scannedResult"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="!isDesktop">
     <ion-item *ngFor="let barcode of barcodes">
       <ion-label position="stacked">{{ barcode.format }}</ion-label>
       <ion-input type="text" [value]="barcode.rawValue"></ion-input>
     </ion-item>
   </ion-list>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
-      <ion-icon name="scan"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>
