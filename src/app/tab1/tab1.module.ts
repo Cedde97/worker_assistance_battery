@@ -8,9 +8,6 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 
-// Necessary to solve the problem of losing internet connection
-LOAD_WASM().subscribe();
-
 @NgModule({
   imports: [
     IonicModule,
@@ -23,3 +20,6 @@ LOAD_WASM().subscribe();
   declarations: [Tab1Page]
 })
 export class Tab1PageModule {}
+
+// Necessary to solve the problem of losing internet connection
+LOAD_WASM().subscribe();
