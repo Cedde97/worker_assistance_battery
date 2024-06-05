@@ -9,7 +9,6 @@ import {
   ScannerQRCodeSelectedFiles,
 } from 'ngx-scanner-qrcode';
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -19,8 +18,11 @@ export class Tab1Page implements OnInit {
   isSupported = false;
   barcodes: Barcode[] = [];
   isDesktop = false;
-  isDektopScanning = false;
+  isDesktopScanning = false;
   scannedResults: String[] = [];
+  image_path = "../../assets/product_pictures/green.jpeg";
+  image_description = "lorem ipsum, put se drecksteil zusammen 1,2,3"
+
 
   public config: ScannerQRCodeConfig = {
     constraints: {
@@ -54,8 +56,10 @@ export class Tab1Page implements OnInit {
       }
       const { barcodes } = await BarcodeScanner.scan();
       this.barcodes.push(...barcodes);
+      this.change_product_information(barcodes[0].displayValue)
+
     } else { // desktop
-      this.isDektopScanning = true;
+      this.isDesktopScanning = true;
       this.handle(action, fn) 
     }
   }
@@ -83,13 +87,15 @@ export class Tab1Page implements OnInit {
     
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
+
+    this.change_product_information(e[0].value)
   }
   
   public handle(action: any, fn: string): void {
     const playDeviceFacingBack = (devices: any[]) => {
       // front camera or back camera check here!
-      const device = devices.find(f => (/back|rear|environment/gi.test(f.label))); // Default Back Facing Camera
-      action.playDevice(device ? device.deviceId : devices[0].deviceId);
+      const device = devices.find(f => (/environment|back|rear/gi.test(f.label))); // Default Back Facing Camera
+      action.playDevice(device ? device.deviceId : devices[1].deviceId);
     }
 
     if (fn === 'start') {
@@ -99,4 +105,18 @@ export class Tab1Page implements OnInit {
     }
   }
 
+  /////////////////////////////////////////////////
+  // common functions:
+  ////////////////////////////////////////////////
+  private change_product_information(product_code: string):void {
+    if(product_code == "green"){
+      this.image_path = "../../assets/product_pictures/green.jpeg";
+      this.image_description = "lorem ipsum, put se green drecksteil zusammen 1,2,3"
+    }
+    else if (product_code == "orange"){
+      this.image_path = "../../assets/product_pictures/orange.jpeg";
+      this.image_description = "lorem ipsum, put se orange drecksteil zusammen 1,2,3"
+    }
+
+  }
 }
