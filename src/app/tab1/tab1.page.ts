@@ -36,17 +36,14 @@ export class Tab1Page implements OnInit {
   
   constructor(private alertController: AlertController) {}
 
-  private isMobile() {
-    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    return regex.test(navigator.userAgent);
-  }
-
   ngOnInit() {
     if (!this.isMobile()) {
       this.isDesktop = true;
     }
   }
 
+  // function to start scanning process
+  // distinguishes between mobile and desktop:
   async scan(action: any, fn: string): Promise<void> {
     if (!this.isDesktop){ // mobile
       const granted = await this.requestPermissions();
@@ -64,6 +61,9 @@ export class Tab1Page implements OnInit {
     }
   }
 
+  /////////////////////////////////////////////////
+  // qr-scanner mobile
+  ////////////////////////////////////////////////
   async requestPermissions(): Promise<boolean> {
     const { camera } = await BarcodeScanner.requestPermissions();
     return camera === 'granted' || camera === 'limited';
@@ -79,10 +79,9 @@ export class Tab1Page implements OnInit {
   }
 
   /////////////////////////////////////////////////
-  // ngx-scanner web app
+  // qr-scanner desktop
   ////////////////////////////////////////////////
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
-    // e && action && action.pause();
     console.log(e);
     
     this.scannedResults.push(e[0].value);
@@ -95,7 +94,6 @@ export class Tab1Page implements OnInit {
     const playDeviceFacingBack = (devices: any[]) => {
       // front camera or back camera check here!
       const device = devices.find(f => (/environment|back|rear/gi.test(f.label))); // Default Back Facing Camera
-      action.playDevice(device ? device.deviceId : devices[1].deviceId);
     }
 
     if (fn === 'start') {
@@ -117,6 +115,10 @@ export class Tab1Page implements OnInit {
       this.image_path = "../../assets/product_pictures/orange.jpeg";
       this.image_description = "lorem ipsum, put se orange drecksteil zusammen 1,2,3"
     }
+  }
 
+  private isMobile() {
+    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return regex.test(navigator.userAgent);
   }
 }
