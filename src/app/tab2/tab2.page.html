@@ -3,6 +3,7 @@
     <ion-title>
       Tab 2
     </ion-title>
+    <ion-toast [isOpen]="isSuccessToastOpen" message="Sucess Toast" [duration]="3000" (didDismiss)="display_success_toast(false)" color="success" position="top"></ion-toast>
   </ion-toolbar>
 </ion-header>
 
@@ -12,12 +13,38 @@
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-
-  <ion-img
-    src="../../assets/product_pictures/orange.jpeg"
-    alt="The Wisconsin State Capitol building in Madison, WI at night"
-    style="height: 200px; width: 100px;"
-  ></ion-img>
+  <ion-content class="ion-padding">
+    <ion-button expand="block" (click)="startProduction()">Starte Zusammenbau</ion-button>
+    <ion-toast [isOpen]="isFailureToastOpen" message="Failure Toast" [duration]="3000" (didDismiss)="display_failure_toast(false)" color="danger" position="bottom"></ion-toast>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card style="height: 300px;">
+            <ngx-scanner-qrcode #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card style="height: 300px;text-align: center;">
+            <ion-card-title>Bauanleitung</ion-card-title>
+            <ion-card-content>
+              <div *ngIf="first_step" id="#first_step">
+                <p>Finden Sie das grüne Bauteil.</p>
+                <ion-button expand="block" (click)="build_instruction(1, action, 'start')">Scannen Sie das grüne Bauteil</ion-button>
+              </div>
+              <div *ngIf="second_step" id="#second_step">
+                <p>Finden Sie das orange Bauteil.</p>
+                <ion-button expand="block" (click)="build_instruction(2, action, 'start')">Scannen Sie das orange Bauteil</ion-button>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card style="height: 300px;">
+            <ion-img [src]='image_path'></ion-img>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
 </ion-content>
