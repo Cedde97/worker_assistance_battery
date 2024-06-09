@@ -1,11 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -20,11 +12,11 @@
           <ion-card style="height: 300px;">
             <!--<ngx-scanner-qrcode #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>-->
             <ion-list>
-              <ion-item [button]="true">
-                <ion-label (click)="show_green_product_information()">Grün</ion-label>
+              <ion-item [button]="true" (click)="show_green_product_information()">
+                <ion-label>Grün</ion-label>
               </ion-item>
-              <ion-item [button]="true">
-                <ion-label (click)="show_orange_product_information()">Orange</ion-label>
+              <ion-item [button]="true" (click)="show_orange_product_information()">
+                <ion-label>Orange</ion-label>
               </ion-item>
             </ion-list>
           </ion-card>
@@ -53,7 +45,7 @@
         </ion-col>
         <ion-col>
           <ion-card style="height: 300px;">
-            <ion-img [src]='image_path' style="height: 100%; width: 100%"></ion-img>
+            <ion-img *ngIf="image_path != ''" [src]='image_path' style="height: 100%; width: 100%"></ion-img>
           </ion-card>
         </ion-col>
       </ion-row>
