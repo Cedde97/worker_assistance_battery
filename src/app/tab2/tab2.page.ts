@@ -20,8 +20,8 @@ export class Tab2Page implements OnInit {
   isDesktop = false;
   isDesktopScanning = false;
   scannedResults: String[] = [];
-  image_path = "../../assets/product_pictures/green.jpeg";
-  image_description = "lorem ipsum, put se drecksteil zusammen 1,2,3"
+  image_path = "";
+  image_description = "";
   isSuccessToastOpen = false;
   isFailureToastOpen = false;
   
@@ -112,11 +112,9 @@ export class Tab2Page implements OnInit {
   private change_product_information(product_code: string):void {
     if(product_code == "green"){
       this.image_path = "../../assets/product_pictures/green.jpeg";
-      this.image_description = "lorem ipsum, put se green drecksteil zusammen 1,2,3"
     }
     else if (product_code == "orange"){
       this.image_path = "../../assets/product_pictures/orange.jpeg";
-      this.image_description = "lorem ipsum, put se orange drecksteil zusammen 1,2,3"
     }
   }
 
@@ -139,6 +137,7 @@ export class Tab2Page implements OnInit {
 
   public startProduction(){
     this.first_step = true
+    this.image_path = "../../assets/product_pictures/green.jpeg";
   }
 
   async build_instruction(step: Number, action: any, fn: string){
@@ -157,11 +156,10 @@ export class Tab2Page implements OnInit {
   }
 
   private check_production_piece(product_code: string){
-    // main logik
-    this.change_product_information(product_code)
-    
+    // main logik    
     if(product_code == this.current_product_piece){
       this.display_success_toast(true)
+      this.change_product_information(product_code)
       this.second_step = true
     } else {
       this.display_failure_toast(true)

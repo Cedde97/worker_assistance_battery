@@ -12,4 +12,4 @@ export class ProductPiece {
         this.production_date = data.production_date;
         this.description = data.description;
     }
-    }
+}
