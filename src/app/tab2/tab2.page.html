@@ -6,36 +6,43 @@
   </ion-header>
   <ion-content class="ion-padding">
     <ion-button expand="block" (click)="startProduction()">Starte Zusammenbau</ion-button>
-    <ion-toast [isOpen]="isFailureToastOpen" message="Failure Toast" [duration]="3000" (didDismiss)="display_failure_toast(false)" color="danger" position="bottom"></ion-toast>
-  
-    <ion-grid>
+    <ion-toast [isOpen]="isFailureToastOpen" message="Failure Toast" [duration]="3000" (didDismiss)="display_failure_toast(false)" color="danger" position="top"></ion-toast>
+    <ion-toast [isOpen]="isSuccessToastOpen" message="Success Toast" [duration]="3000" (didDismiss)="display_success_toast(false)" color="success" position="top"></ion-toast>
+
+    <ion-grid style="height: 80%;">
       <ion-row>
-        <ion-col *ngIf="isDesktop">
-          <ion-card style="height: 300px;">
-            <ngx-scanner-qrcode #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
-          </ion-card>
-        </ion-col>
         <ion-col>
           <ion-card style="height: 300px;text-align: center;">
-            <ion-card-title>Bauanleitung</ion-card-title>
+            <ion-card-title>Montage-Anleitung</ion-card-title>
             <ion-card-content>
-              <div *ngIf="first_step" id="#first_step">
-                <p>Finden Sie das grüne Bauteil.</p>
-                <ion-button expand="block" (click)="build_instruction(1, action, 'start')">Scannen Sie das grüne Bauteil</ion-button>
-              </div>
-              <div *ngIf="second_step" id="#second_step">
-                <p>Finden Sie das orange Bauteil.</p>
-                <ion-button expand="block" (click)="build_instruction(2, action, 'start')">Scannen Sie das orange Bauteil</ion-button>
-              </div>
+              <ion-grid>
+                <ion-list *ngIf="isDesktop">
+                  <ion-item *ngFor="let workflowstep of display_workflowsteps">
+                    <ion-input type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</ion-input>
+                    <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">Done</ion-button>
+                    <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1" (click)="scan(action, 'start')">Scan</ion-button>
+                  </ion-item>
+                </ion-list>
+              </ion-grid>
             </ion-card-content>
           </ion-card>
         </ion-col>
         <ion-col>
           <ion-card style="height: 300px;">
-            <ion-img *ngIf="image_path != ''" [src]='image_path' style="height:100%; width: 100%;"></ion-img>
+            <ion-grid>
+              <ion-col>
+                <ion-img *ngIf="image_path_before != ''" [src]='image_path_before' style="height:100px; width: 100px;"></ion-img>
+              </ion-col>
+              <ion-col>
+                <ion-img *ngIf="image_path_after != ''" [src]='image_path_after' style="height:100px; width: 100px;"></ion-img>
+              </ion-col>
+            </ion-grid>
           </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-content>
+
+  <ngx-scanner-qrcode style="height: 0%; width: 0%;" #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
+
 </ion-content>

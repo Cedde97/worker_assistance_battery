@@ -5,22 +5,9 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-button expand="block" (click)="show_product_information()">Zeige Produktinformation</ion-button> 
-    <ion-grid>
+    <ion-button expand="block" (click)="scan(action, 'start')">Scannen Sie ein Bauteil</ion-button>
+    <ion-grid style="height: 80%;">
       <ion-row>
-        <ion-col>
-          <ion-card style="height: 300px;">
-            <!--<ngx-scanner-qrcode #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>-->
-            <ion-list>
-              <ion-item [button]="true" (click)="show_green_product_information()">
-                <ion-label>Grün</ion-label>
-              </ion-item>
-              <ion-item [button]="true" (click)="show_orange_product_information()">
-                <ion-label>Orange</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-card>
-        </ion-col>
         <ion-col>
           <ion-card>
             <ion-card-title style="text-align: center;">Produktinformation</ion-card-title>
@@ -44,16 +31,16 @@
           </ion-card>
         </ion-col>
         <ion-col>
-          <ion-card style="height: 300px;">
-            <ion-img *ngIf="image_path != ''" [src]='image_path' style="height: 100%; width: 100%"></ion-img>
+          <ion-card style="height: 100%;">
+            <ion-img style="object-fit: contain;" *ngIf="image_path != ''" [src]='image_path'></ion-img>
           </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-button expand="block" (click)="scan(action, 'start')">Scannen Sie ein Bauteil</ion-button>
-    <!--<div style="height: 300px; width: 300px;">-->
-    <div [style]="desktop_scanner_style">
+    <!-- <div [style]="desktop_scanner_style">
       <ngx-scanner-qrcode [style]="desktop_scanner_style" #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
     </div>
+  -->
+    <ngx-scanner-qrcode style="height: 0%; width: 0%;" #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
   </ion-content>
 </ion-content>

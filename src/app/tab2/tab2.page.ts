@@ -8,6 +8,9 @@ import {
   NgxScannerQrcodeComponent,
   ScannerQRCodeSelectedFiles,
 } from 'ngx-scanner-qrcode';
+import { WorkflowStep } from '../models/WorkflowStep';
+import { ProductWorkflow } from '../models/ProductWorkflow';
+import { ProductPiece } from '../models/ProductPiece';
 
 @Component({
   selector: 'app-tab2',
@@ -18,17 +21,21 @@ export class Tab2Page implements OnInit {
   isSupported = false;
   barcodes: Barcode[] = [];
   isDesktop = false;
-  isDesktopScanning = false;
   scannedResults: String[] = [];
-  image_path = "";
-  image_description = "";
+  image_path_before = "";
+  image_path_after = "";
   isSuccessToastOpen = false;
   isFailureToastOpen = false;
   
 
   // bauanleitung steps: 
-  first_step = false
-  second_step = false
+  workflow = new ProductWorkflow();
+  workflowsteps: WorkflowStep[] = this.workflow.get_product_workflow();
+  display_workflowsteps: any;
+  current_workflowstep: any;
+
+  //current_step = 1
+  //current_partial_step = 1
 
   current_process: String = "";
   current_product_piece: String = "";
@@ -80,6 +87,8 @@ export class Tab2Page implements OnInit {
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
 
     this.check_production_piece(e[0].value)
+
+    action["start"]().subscribe((r: any) => console.log("start", r), alert);
   }
   
   public scan_desktop(action: any, fn: string) {
@@ -109,15 +118,6 @@ export class Tab2Page implements OnInit {
     }
   }
 
-  private change_product_information(product_code: string):void {
-    if(product_code == "green"){
-      this.image_path = "../../assets/product_pictures/green.jpeg";
-    }
-    else if (product_code == "orange"){
-      this.image_path = "../../assets/product_pictures/orange.jpeg";
-    }
-  }
-
   private isMobile() {
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     return regex.test(navigator.userAgent);
@@ -136,31 +136,48 @@ export class Tab2Page implements OnInit {
   ////////////////////////////////////////////////
 
   public startProduction(){
-    this.first_step = true
-    this.image_path = "../../assets/product_pictures/green.jpeg";
+    this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, 1);
+
+    this.current_workflowstep = this.workflow.get_workflow_partial_step(this.workflowsteps, 1, 1);
+    this.current_workflowstep.current_active = true;
+
+    this.image_path_before = this.current_workflowstep.picture_path_before;
+    this.image_path_after = this.current_workflowstep.picture_path_after;
   }
 
-  async build_instruction(step: Number, action: any, fn: string){
-    switch (step){
-      case 1:
-        this.current_process = "step 1"
-        this.current_product_piece = "green"
-        break;
-      case 2:
-        this.current_process = "step 2"
-        this.current_product_piece = "orange"
-        break;
-    }
-
-    await this.scan(action, fn)
+  // markiere den aktuellen Montageschritt als erledigt
+  public mark_as_done(step_id:number, partial_step_id: number){
+    this.workflowsteps.forEach((step: any, index: any) => {
+      if (step.step === step_id && step.partial_step === partial_step_id) {
+        step.done = true;
+        step.current_active = false;
+        this.set_step_active(index + 1)
+        if(this.workflow.step_is_fully_done(this.workflowsteps, step_id)){
+          this.display_next_step(step_id)
+        }
+      }
+    });
   }
 
+  // markiere den nächsten Montageschritt als todo
+  private set_step_active(index:number){
+    console.log(this.workflowsteps[index])
+    this.workflowsteps[index].current_active = true;
+    this.current_workflowstep = this.workflowsteps[index];
+  }
+
+  private display_next_step(step_id:number){
+    this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id + 1)
+  }
+
+  
+  // prueft das gescannte bauteil gegen den aktuellen Montageschritt
   private check_production_piece(product_code: string){
-    // main logik    
-    if(product_code == this.current_product_piece){
+    let scanned_product:ProductPiece = new ProductPiece(JSON.parse(product_code))
+
+    if(scanned_product.id == this.current_workflowstep.product_id){
       this.display_success_toast(true)
-      this.change_product_information(product_code)
-      this.second_step = true
+      this.mark_as_done(this.current_workflowstep.step, this.current_workflowstep.partial_step)
     } else {
       this.display_failure_toast(true)
     }
