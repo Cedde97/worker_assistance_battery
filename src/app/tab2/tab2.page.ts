@@ -1,12 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
 import {
-  ScannerQRCodeConfig,
   ScannerQRCodeResult,
-  NgxScannerQrcodeService,
   NgxScannerQrcodeComponent,
-  ScannerQRCodeSelectedFiles,
 } from 'ngx-scanner-qrcode';
 import { WorkflowStep } from '../models/WorkflowStep';
 import { ProductWorkflow } from '../models/ProductWorkflow';
@@ -21,6 +18,7 @@ export class Tab2Page implements OnInit {
   isSupported = false;
   barcodes: Barcode[] = [];
   isDesktop = false;
+  isDesktopScanning = false;
   scannedResults: String[] = [];
   image_path_before = "";
   image_path_after = "";
@@ -42,7 +40,8 @@ export class Tab2Page implements OnInit {
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
-  constructor(private alertController: AlertController) {}
+  constructor(private alertController: AlertController) {
+  }
 
   ngOnInit() {
     if (!this.isMobile()) {
@@ -88,7 +87,7 @@ export class Tab2Page implements OnInit {
 
     this.check_production_piece(e[0].value)
 
-    action["start"]().subscribe((r: any) => console.log("start", r), alert);
+    // action["start"]().subscribe((r: any) => console.log("start", r), alert);
   }
   
   public scan_desktop(action: any, fn: string) {
@@ -115,6 +114,7 @@ export class Tab2Page implements OnInit {
       this.scan_mobile()
     } else { // desktop
       this.scan_desktop(action, fn) 
+      this.isDesktopScanning = true;
     }
   }
 
@@ -176,10 +176,12 @@ export class Tab2Page implements OnInit {
     let scanned_product:ProductPiece = new ProductPiece(JSON.parse(product_code))
 
     if(scanned_product.id == this.current_workflowstep.product_id){
+      this.isDesktopScanning = false;
       this.display_success_toast(true)
       this.mark_as_done(this.current_workflowstep.step, this.current_workflowstep.partial_step)
     } else {
       this.display_failure_toast(true)
+      this.action["start"]().subscribe((r: any) => console.log("start", r), alert);
     }
   }
 
