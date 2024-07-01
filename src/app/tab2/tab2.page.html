@@ -12,15 +12,29 @@
     <ion-grid style="height: 80%;">
       <ion-row>
         <ion-col>
-          <ion-card style="height: 300px;text-align: center;">
-            <ion-card-title>Montage-Anleitung</ion-card-title>
+          <ion-card>
+            <ion-card-title style="text-align: center;">Montage-Anleitung</ion-card-title>
             <ion-card-content>
               <ion-grid>
                 <ion-list *ngIf="isDesktop">
                   <ion-item *ngFor="let workflowstep of display_workflowsteps">
-                    <ion-input type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</ion-input>
-                    <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">Done</ion-button>
-                    <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1" (click)="scan(action, 'start')">Scan</ion-button>
+                    <ion-grid>
+                      <ion-row> 
+                        <ion-col>
+                          <ion-icon *ngIf="workflowstep.done" name="checkbox-outline"></ion-icon>
+                          <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col>
+                          <ion-input type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</ion-input>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">Done</ion-button>
+                          <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1 && !isDesktopScanning" (click)="scan(action, 'start')">Scan</ion-button>
+                          <ion-spinner *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning" name="circles"></ion-spinner>
+                          <p *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning">Please Scan QR Code</p>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
                   </ion-item>
                 </ion-list>
               </ion-grid>

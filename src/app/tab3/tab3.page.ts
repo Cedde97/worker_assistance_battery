@@ -71,7 +71,7 @@ export class Tab3Page implements OnInit {
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
     this.show_scanned_product_information(e[0].value)
-    action["start"]().subscribe((r: any) => console.log("start", r), alert);
+    // action["start"]().subscribe((r: any) => console.log("start", r), alert);
   }
   
   public scan_desktop(action: any, fn: string) {
