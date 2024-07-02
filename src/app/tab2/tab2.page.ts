@@ -164,6 +164,8 @@ export class Tab2Page implements OnInit {
     console.log(this.workflowsteps[index])
     this.workflowsteps[index].current_active = true;
     this.current_workflowstep = this.workflowsteps[index];
+    this.image_path_before = this.current_workflowstep.picture_path_before;
+    this.image_path_after = this.current_workflowstep.picture_path_after;
   }
 
   private display_next_step(step_id:number){
