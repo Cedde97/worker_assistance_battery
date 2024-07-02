@@ -44,12 +44,16 @@
         <ion-col>
           <ion-card style="height: 300px;">
             <ion-grid>
-              <ion-col>
-                <ion-img *ngIf="image_path_before != ''" [src]='image_path_before' style="height:100px; width: 100px;"></ion-img>
-              </ion-col>
-              <ion-col>
-                <ion-img *ngIf="image_path_after != ''" [src]='image_path_after' style="height:100px; width: 100px;"></ion-img>
-              </ion-col>
+              <ion-row>
+                <ion-col>
+                  <ion-input type="text">Vorher:</ion-input>
+                  <ion-img *ngIf="image_path_before != ''" [src]='image_path_before' style="height:80%; width: 80%;"></ion-img>
+                </ion-col>
+                <ion-col>
+                  <ion-input type="text">Nachher:</ion-input>
+                  <ion-img *ngIf="image_path_after != ''" [src]='image_path_after' style="height:80%; width: 80%;"></ion-img>
+                </ion-col>
+              </ion-row>
             </ion-grid>
           </ion-card>
         </ion-col>
