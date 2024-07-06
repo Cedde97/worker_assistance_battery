@@ -6,5 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  screenHeight = window.innerHeight;
+  screenWidth = window.innerWidth;
   constructor() {}
 }

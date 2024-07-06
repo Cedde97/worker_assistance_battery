@@ -9,14 +9,14 @@
     <ion-toast [isOpen]="isFailureToastOpen" message="Failure Toast" [duration]="3000" (didDismiss)="display_failure_toast(false)" color="danger" position="top"></ion-toast>
     <ion-toast [isOpen]="isSuccessToastOpen" message="Success Toast" [duration]="3000" (didDismiss)="display_success_toast(false)" color="success" position="top"></ion-toast>
 
-    <ion-grid style="height: 80%;">
+    <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-card>
+          <ion-card style="height: {{screenHeight*0.75}}px">
             <ion-card-title style="text-align: center;">Montage-Anleitung</ion-card-title>
             <ion-card-content>
               <ion-grid>
-                <ion-list *ngIf="isDesktop">
+                <ion-list>
                   <ion-item *ngFor="let workflowstep of display_workflowsteps">
                     <ion-grid>
                       <ion-row> 
@@ -42,7 +42,7 @@
           </ion-card>
         </ion-col>
         <ion-col>
-          <ion-card style="height: 300px;">
+          <ion-card style="height: {{screenHeight*0.75}}px">
             <ion-grid>
               <ion-row>
                 <ion-col>
