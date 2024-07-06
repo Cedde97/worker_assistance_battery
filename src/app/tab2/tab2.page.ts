@@ -15,7 +15,6 @@ import { ProductPiece } from '../models/ProductPiece';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page implements OnInit {
-  isSupported = false;
   barcodes: Barcode[] = [];
   isDesktop = false;
   isDesktopScanning = false;
@@ -25,18 +24,19 @@ export class Tab2Page implements OnInit {
   isSuccessToastOpen = false;
   isFailureToastOpen = false;
   
-
   // bauanleitung steps: 
   workflow = new ProductWorkflow();
   workflowsteps: WorkflowStep[] = this.workflow.get_product_workflow();
   display_workflowsteps: any;
   current_workflowstep: any;
 
-  //current_step = 1
-  //current_partial_step = 1
-
   current_process: String = "";
   current_product_piece: String = "";
+
+  screenHeight = window.innerHeight;
+  screenWidth = window.innerWidth;
+
+  ion_card_style = "height: " + this.screenHeight + "px"
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
@@ -119,8 +119,15 @@ export class Tab2Page implements OnInit {
   }
 
   private isMobile() {
-    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    return regex.test(navigator.userAgent);
+    // const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    const mobile_array = ["Mobi", "Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini"]
+    console.log(navigator.userAgent)
+    for (let system of mobile_array) {
+      if (navigator.userAgent.includes(system)){
+          return true;
+      }
+    }  
+    return false;
   }
 
   public display_success_toast(isOpen: boolean){
@@ -137,10 +144,8 @@ export class Tab2Page implements OnInit {
 
   public startProduction(){
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, 1);
-
     this.current_workflowstep = this.workflow.get_workflow_partial_step(this.workflowsteps, 1, 1);
     this.current_workflowstep.current_active = true;
-
     this.image_path_before = this.current_workflowstep.picture_path_before;
     this.image_path_after = this.current_workflowstep.picture_path_after;
   }

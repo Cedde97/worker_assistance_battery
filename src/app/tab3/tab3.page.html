@@ -6,10 +6,10 @@
   </ion-header>
   <ion-content class="ion-padding">
     <ion-button expand="block" (click)="scan(action, 'start')">Scannen Sie ein Bauteil</ion-button>
-    <ion-grid style="height: 80%;">
+    <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-card>
+          <ion-card style="height: {{screenHeight*0.7}}px">
             <ion-card-title style="text-align: center;">Produktinformation</ion-card-title>
             <ion-list>
               <ion-item>
@@ -31,16 +31,12 @@
           </ion-card>
         </ion-col>
         <ion-col>
-          <ion-card style="height: 100%;">
+          <ion-card style="height: {{screenHeight*0.7}}px">
             <ion-img style="object-fit: contain;" *ngIf="image_path != ''" [src]='image_path'></ion-img>
           </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <!-- <div [style]="desktop_scanner_style">
-      <ngx-scanner-qrcode [style]="desktop_scanner_style" #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
-    </div>
-  -->
     <ngx-scanner-qrcode style="height: 0%; width: 0%;" #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
   </ion-content>
 </ion-content>

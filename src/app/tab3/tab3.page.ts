@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ProductPiece } from '../models/ProductPiece';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import {
@@ -14,7 +14,6 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page implements OnInit {
-  isSupported = false;
   barcodes: Barcode[] = [];
   isDesktop = false;
   isDesktopScanning = false;
@@ -24,6 +23,9 @@ export class Tab3Page implements OnInit {
   image_path: string = "";
   empty_product: string = '{"id": "", "serial_number": "", "supplier_number": "", "production_date": ""}'
   current_product:ProductPiece = new ProductPiece(JSON.parse(this.empty_product));
+
+  screenHeight = window.innerHeight;
+  screenWidth = window.innerWidth;
 
   constructor(private alertController: AlertController) {}
 
@@ -71,7 +73,6 @@ export class Tab3Page implements OnInit {
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
     this.show_scanned_product_information(e[0].value)
-    // action["start"]().subscribe((r: any) => console.log("start", r), alert);
   }
   
   public scan_desktop(action: any, fn: string) {
@@ -96,14 +97,22 @@ export class Tab3Page implements OnInit {
   async scan(action: any, fn: string): Promise<void> {
     if (!this.isDesktop){ // mobile
       this.scan_mobile()
+      
     } else { // desktop
       this.scan_desktop(action, fn) 
     }
   }
 
   private isMobile() {
-    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    return regex.test(navigator.userAgent);
+    // const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    const mobile_array = ["Mobi", "Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini"]
+    console.log(navigator.userAgent)
+    for (let system of mobile_array) {
+      if (navigator.userAgent.includes(system)){
+          return true;
+      }
+    }  
+    return false;
   }
   
   private show_scanned_product_information(product_code: string){
@@ -112,3 +121,4 @@ export class Tab3Page implements OnInit {
   }
 
 }
+
