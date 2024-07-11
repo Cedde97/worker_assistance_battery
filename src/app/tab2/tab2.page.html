@@ -19,7 +19,7 @@
                 <ion-row>
                   <ion-col size="1.5">
                     <ion-content>
-                      <ion-segment value="schritt_{{current_workflowstep.step}}" style="display : block; margin-left: -20px;">
+                      <ion-segment *ngIf="current_workflowstep not null" value="schritt_{{current_workflowstep.step}}" style="display : block; margin-left: -20px;">
                         <ion-segment-button value="schritt_1" (click)="show_step(1)">1</ion-segment-button>
                         <ion-segment-button value="schritt_2" (click)="show_step(2)">2</ion-segment-button>
                         <ion-segment-button value="schritt_3" (click)="show_step(3)">3</ion-segment-button>
