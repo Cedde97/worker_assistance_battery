@@ -192,4 +192,8 @@ export class Tab2Page implements OnInit {
     }
   }
 
+  public show_step(step_id: number){
+    this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id)
+  }
+
 }
