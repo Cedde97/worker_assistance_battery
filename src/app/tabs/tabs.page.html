@@ -25,7 +25,7 @@
                   <ion-select-option value="deutsch">Deutsch</ion-select-option>
                   <ion-select-option value="englisch">Englisch</ion-select-option>
                 </ion-select>
-                <ion-select label="level" placeholder="Wähle Level">
+                <ion-select label="level" placeholder="Wähle Level" (ionChange)="invokeTab2ChangeDetailMethod($event)">
                   <ion-select-option value="detail">Detailliert</ion-select-option>
                   <ion-select-option value="short">Kurzform</ion-select-option>
                 </ion-select>
