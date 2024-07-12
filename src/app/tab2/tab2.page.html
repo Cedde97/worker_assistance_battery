@@ -47,7 +47,8 @@
                               <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
                             </ion-col>
                             <ion-col size="9">
-                              <ion-input type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</ion-input>
+                              <ion-input *ngIf="detail_level == 'detail'" type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</ion-input>
+                              <ion-input *ngIf="detail_level == 'short'" type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german_short}}</ion-input>
                             </ion-col>
                             <ion-col size="1">
                               <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">Done</ion-button>

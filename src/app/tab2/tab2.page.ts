@@ -8,6 +8,7 @@ import {
 import { WorkflowStep } from '../models/WorkflowStep';
 import { ProductWorkflow } from '../models/ProductWorkflow';
 import { ProductPiece } from '../models/ProductPiece';
+import { PageCommunicationService } from '../models/services/page-communication.service';
 
 @Component({
   selector: 'app-tab2',
@@ -23,6 +24,7 @@ export class Tab2Page implements OnInit {
   image_path_after = "";
   isSuccessToastOpen = false;
   isFailureToastOpen = false;
+  detail_level = 'detail';
   
   // bauanleitung steps: 
   workflow = new ProductWorkflow();
@@ -40,13 +42,20 @@ export class Tab2Page implements OnInit {
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
-  constructor(private alertController: AlertController) {
+  constructor(private alertController: AlertController, private pageCommunicationService: PageCommunicationService) {
   }
 
   ngOnInit() {
     if (!this.isMobile()) {
       this.isDesktop = true;
     }
+    this.pageCommunicationService.invokeTab2ChangeDetailMethod$.subscribe((detail_level) => {
+      this.changeDetailLevel(detail_level);
+    });
+  }
+
+  changeDetailLevel(detail_level:string) {
+    this.detail_level = detail_level;
   }
 
   /////////////////////////////////////////////////
