@@ -19,8 +19,8 @@
                 <ion-row>
                   <ion-col size="1.5">
                     <ion-content>
-                      <ion-segment *ngIf="current_workflowstep not null" value="schritt_{{current_workflowstep.step}}" style="display : block; margin-left: -20px;">
-                        <ion-segment-button *ngFor="let step of getUniqueSteps()" [value]="'schritt_' + step" (click)="show_step(step)">{{step}}</ion-segment-button>
+                      <ion-segment *ngIf="current_workflowstep not null" value="schritt_{{current_workflowstep.step}}">
+                        <ion-segment-button *ngFor="let step of getUniqueSteps()" [value]="'Schritt ' + step" (click)="show_step(step)">Schritt {{step}}</ion-segment-button>
                       </ion-segment>
                     </ion-content>
                   </ion-col>

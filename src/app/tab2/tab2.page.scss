@@ -1,14 +1,29 @@
- 
-  /* Container styling */
-  .container {
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-  }
-  
-  /* Individual box styling */
-  .box {
-    // text-align: center; /* Center text inside the box */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-  }
+/* Container styling */
+.container {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* Individual box styling */
+.box {
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+ion-segment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+ion-segment-button {
+  text-transform: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
