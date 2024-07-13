@@ -20,20 +20,7 @@
                   <ion-col size="1.5">
                     <ion-content>
                       <ion-segment *ngIf="current_workflowstep not null" value="schritt_{{current_workflowstep.step}}" style="display : block; margin-left: -20px;">
-                        <ion-segment-button value="schritt_1" (click)="show_step(1)">1</ion-segment-button>
-                        <ion-segment-button value="schritt_2" (click)="show_step(2)">2</ion-segment-button>
-                        <ion-segment-button value="schritt_3" (click)="show_step(3)">3</ion-segment-button>
-                        <ion-segment-button value="schritt_4" (click)="show_step(4)">4</ion-segment-button>
-                        <ion-segment-button value="schritt_5" (click)="show_step(5)">5</ion-segment-button>
-                        <ion-segment-button value="schritt_6" (click)="show_step(6)">6</ion-segment-button>
-                        <ion-segment-button value="schritt_7" (click)="show_step(7)">7</ion-segment-button>
-                        <ion-segment-button value="schritt_8" (click)="show_step(8)">8</ion-segment-button>
-                        <ion-segment-button value="schritt_9" (click)="show_step(9)">9</ion-segment-button>
-                        <ion-segment-button value="schritt_10" (click)="show_step(10)">10</ion-segment-button>
-                        <ion-segment-button value="schritt_11" (click)="show_step(11)">11</ion-segment-button>
-                        <ion-segment-button value="schritt_12" (click)="show_step(12)">12</ion-segment-button>
-                        <ion-segment-button value="schritt_13" (click)="show_step(13)">13</ion-segment-button>
-                        <ion-segment-button value="schritt_14" (click)="show_step(14)">14</ion-segment-button>
+                        <ion-segment-button *ngFor="let step of getUniqueSteps()" [value]="'schritt_' + step" (click)="show_step(step)">{{step}}</ion-segment-button>
                       </ion-segment>
                     </ion-content>
                   </ion-col>
@@ -41,7 +28,7 @@
                     <ion-list>
                       <ion-item *ngFor="let workflowstep of display_workflowsteps">
                         <ion-grid>
-                          <ion-row> 
+                          <ion-row>
                             <ion-col size="1">
                               <ion-icon *ngIf="workflowstep.done" name="checkbox-outline"></ion-icon>
                               <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>

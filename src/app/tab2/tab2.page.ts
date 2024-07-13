@@ -25,8 +25,8 @@ export class Tab2Page implements OnInit {
   isSuccessToastOpen = false;
   isFailureToastOpen = false;
   detail_level = 'detail';
-  
-  // bauanleitung steps: 
+
+  // bauanleitung steps:
   workflow = new ProductWorkflow();
   workflowsteps: WorkflowStep[] = this.workflow.get_product_workflow();
   display_workflowsteps: any;
@@ -90,7 +90,7 @@ export class Tab2Page implements OnInit {
   /////////////////////////////////////////////////
   // qr-scanner desktop
   ////////////////////////////////////////////////
-  public onEvent(e: ScannerQRCodeResult[], action?: any): void {   
+  public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
 
@@ -98,7 +98,7 @@ export class Tab2Page implements OnInit {
 
     // action["start"]().subscribe((r: any) => console.log("start", r), alert);
   }
-  
+
   public scan_desktop(action: any, fn: string) {
     const playDeviceFacingBack = (devices: any[]) => {
       // front camera or back camera check here!
@@ -122,7 +122,7 @@ export class Tab2Page implements OnInit {
     if (!this.isDesktop){ // mobile
       this.scan_mobile()
     } else { // desktop
-      this.scan_desktop(action, fn) 
+      this.scan_desktop(action, fn)
       this.isDesktopScanning = true;
     }
   }
@@ -135,7 +135,7 @@ export class Tab2Page implements OnInit {
       if (navigator.userAgent.includes(system)){
           return true;
       }
-    }  
+    }
     return false;
   }
 
@@ -186,7 +186,7 @@ export class Tab2Page implements OnInit {
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id + 1)
   }
 
-  
+
   // prueft das gescannte bauteil gegen den aktuellen Montageschritt
   private check_production_piece(product_code: string){
     let scanned_product:ProductPiece = new ProductPiece(JSON.parse(product_code))
@@ -205,4 +205,7 @@ export class Tab2Page implements OnInit {
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id)
   }
 
+  getUniqueSteps(): number[] {
+    return [...new Set(this.workflowsteps.map(step => step.step))];
+  }
 }
