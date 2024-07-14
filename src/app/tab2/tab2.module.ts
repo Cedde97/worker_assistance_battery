@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
-
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+import { TranslateModule } from '@ngx-translate/core'; // Import TranslateModule
 
 @NgModule({
   imports: [
@@ -15,7 +15,8 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    NgxScannerQrcodeModule
+    NgxScannerQrcodeModule,
+    TranslateModule.forChild()
   ],
   declarations: [Tab2Page]
 })

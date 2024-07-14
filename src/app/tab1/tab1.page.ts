@@ -8,6 +8,7 @@ import {
   NgxScannerQrcodeComponent,
   ScannerQRCodeSelectedFiles,
 } from 'ngx-scanner-qrcode';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab1',
@@ -21,8 +22,7 @@ export class Tab1Page implements OnInit {
   isDesktopScanning = false;
   scannedResults: String[] = [];
   image_path = "../../assets/product_pictures/green.jpeg";
-  image_description = "lorem ipsum, put se drecksteil zusammen 1,2,3"
-
+  image_description = this.translate.instant('IMAGE_DESCRIPTION_GREEN'); // Use translation key
 
   public config: ScannerQRCodeConfig = {
     constraints: {
@@ -33,8 +33,12 @@ export class Tab1Page implements OnInit {
   };
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
-  
-  constructor(private alertController: AlertController) {}
+
+  constructor(
+    private alertController: AlertController,
+    private translate: TranslateService // Inject TranslateService
+  ) {
+  }
 
   ngOnInit() {
     if (!this.isMobile()) {
@@ -57,7 +61,7 @@ export class Tab1Page implements OnInit {
 
     } else { // desktop
       this.isDesktopScanning = true;
-      this.handle(action, fn) 
+      this.handle(action, fn)
     }
   }
 
@@ -71,9 +75,9 @@ export class Tab1Page implements OnInit {
 
   async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
-      header: 'Permission denied',
-      message: 'Please grant camera permission to use the barcode scanner.',
-      buttons: ['OK'],
+      header: this.translate.instant('PERMISSION_DENIED'), // Use translation key
+      message: this.translate.instant('PLEASE_GRANT_CAMERA_PERMISSION'), // Use translation key
+      buttons: [this.translate.instant('OK')], // Use translation key
     });
     await alert.present();
   }
@@ -83,13 +87,13 @@ export class Tab1Page implements OnInit {
   ////////////////////////////////////////////////
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     console.log(e);
-    
+
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
 
     this.change_product_information(e[0].value)
   }
-  
+
   public handle(action: any, fn: string): void {
     const playDeviceFacingBack = (devices: any[]) => {
       // front camera or back camera check here!
@@ -106,14 +110,14 @@ export class Tab1Page implements OnInit {
   /////////////////////////////////////////////////
   // common functions:
   ////////////////////////////////////////////////
-  private change_product_information(product_code: string):void {
-    if(product_code == "green"){
+  private change_product_information(product_code: string): void {
+    if (product_code == "green") {
       this.image_path = "../../assets/product_pictures/green.jpeg";
-      this.image_description = "lorem ipsum, put se green drecksteil zusammen 1,2,3"
+      this.image_description = this.translate.instant('IMAGE_DESCRIPTION_GREEN'); // Use translation key
     }
-    else if (product_code == "orange"){
+    else if (product_code == "orange") {
       this.image_path = "../../assets/product_pictures/orange.jpeg";
-      this.image_description = "lorem ipsum, put se orange drecksteil zusammen 1,2,3"
+      this.image_description = this.translate.instant('IMAGE_DESCRIPTION_ORANGE'); // Use translation key
     }
   }
 

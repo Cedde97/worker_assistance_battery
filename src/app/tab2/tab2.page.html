@@ -5,22 +5,22 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-button expand="block" (click)="startProduction()">Starte Zusammenbau</ion-button>
-    <ion-toast [isOpen]="isFailureToastOpen" message="Failure Toast" [duration]="3000" (didDismiss)="display_failure_toast(false)" color="danger" position="top"></ion-toast>
-    <ion-toast [isOpen]="isSuccessToastOpen" message="Success Toast" [duration]="3000" (didDismiss)="display_success_toast(false)" color="success" position="top"></ion-toast>
+    <ion-button expand="block" (click)="startProduction()">{{ 'START_ASSEMBLY' | translate }}</ion-button>
+    <ion-toast [isOpen]="isFailureToastOpen" message="{{ 'FAILURE_TOAST' | translate }}" [duration]="3000" (didDismiss)="display_failure_toast(false)" color="danger" position="top"></ion-toast>
+    <ion-toast [isOpen]="isSuccessToastOpen" message="{{ 'SUCCESS_TOAST' | translate }}" [duration]="3000" (didDismiss)="display_success_toast(false)" color="success" position="top"></ion-toast>
 
     <ion-grid>
       <ion-row>
         <ion-col>
           <ion-card style="height: {{screenHeight*0.75}}px">
-            <ion-card-title style="text-align: center;">Montage-Anleitung</ion-card-title>
+            <ion-card-title style="text-align: center;">{{ 'ASSEMBLY_INSTRUCTIONS' | translate }}</ion-card-title>
             <ion-card-content>
               <ion-grid>
                 <ion-row>
                   <ion-col size="1.5">
                     <ion-content>
                       <ion-segment *ngIf="current_workflowstep not null" value="schritt_{{current_workflowstep.step}}">
-                        <ion-segment-button *ngFor="let step of getUniqueSteps()" [value]="'Schritt ' + step" (click)="show_step(step)">Schritt {{step}}</ion-segment-button>
+                        <ion-segment-button *ngFor="let step of getUniqueSteps()" [value]="'Schritt ' + step" (click)="show_step(step)">{{ 'STEP' | translate }} {{step}}</ion-segment-button>
                       </ion-segment>
                     </ion-content>
                   </ion-col>
@@ -34,14 +34,14 @@
                               <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
                             </ion-col>
                             <ion-col size="9">
-                              <ion-input *ngIf="detail_level == 'detail'" type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</ion-input>
-                              <ion-input *ngIf="detail_level == 'short'" type="text">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german_short}}</ion-input>
+                              <ion-input *ngIf="detail_level == 'detail'" type="text">{{ 'STEP' | translate }} {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description | translate}}</ion-input>
+                              <ion-input *ngIf="detail_level == 'short'" type="text">{{ 'STEP' | translate }} {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_short | translate}}</ion-input>
                             </ion-col>
                             <ion-col size="1">
-                              <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">Done</ion-button>
-                              <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1 && !isDesktopScanning" (click)="scan(action, 'start')">Scan</ion-button>
+                              <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">{{ 'DONE' | translate }}</ion-button>
+                              <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1 && !isDesktopScanning" (click)="scan(action, 'start')">{{ 'SCAN' | translate }}</ion-button>
                               <ion-spinner *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning" name="circles"></ion-spinner>
-                              <p *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning">Please Scan QR Code</p>
+                              <p *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning">{{ 'PLEASE_SCAN_QR_CODE' | translate }}</p>
                             </ion-col>
                           </ion-row>
                         </ion-grid>
@@ -58,11 +58,11 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-input type="text">Vorher:</ion-input>
+                  <ion-input type="text">{{ 'BEFORE' | translate }}:</ion-input>
                   <ion-img *ngIf="image_path_before != ''" [src]='image_path_before' style="height:80%; width: 80%;"></ion-img>
                 </ion-col>
                 <ion-col>
-                  <ion-input type="text">Nachher:</ion-input>
+                  <ion-input type="text">{{ 'AFTER' | translate }}:</ion-input>
                   <ion-img *ngIf="image_path_after != ''" [src]='image_path_after' style="height:80%; width: 80%;"></ion-img>
                 </ion-col>
               </ion-row>
@@ -74,5 +74,4 @@
   </ion-content>
 
   <ngx-scanner-qrcode style="height: 0%; width: 0%;" #action="scanner" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
-
 </ion-content>

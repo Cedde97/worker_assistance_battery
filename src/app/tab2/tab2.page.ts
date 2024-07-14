@@ -9,6 +9,7 @@ import { WorkflowStep } from '../models/WorkflowStep';
 import { ProductWorkflow } from '../models/ProductWorkflow';
 import { ProductPiece } from '../models/ProductPiece';
 import { PageCommunicationService } from '../models/services/page-communication.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab2',
@@ -42,8 +43,11 @@ export class Tab2Page implements OnInit {
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
-  constructor(private alertController: AlertController, private pageCommunicationService: PageCommunicationService) {
-  }
+  constructor(
+    private alertController: AlertController,
+    private pageCommunicationService: PageCommunicationService,
+    private translate: TranslateService
+  ) { }
 
   ngOnInit() {
     if (!this.isMobile()) {
@@ -54,7 +58,15 @@ export class Tab2Page implements OnInit {
     });
   }
 
-  changeDetailLevel(detail_level:string) {
+  setDefaultLanguage() {
+    this.translate.use('de');
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+  }
+
+  changeDetailLevel(detail_level: string) {
     this.detail_level = detail_level;
   }
 
@@ -68,8 +80,8 @@ export class Tab2Page implements OnInit {
 
   async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
-      header: 'Permission denied',
-      message: 'Please grant camera permission to use the barcode scanner.',
+      header: this.translate.instant('PERMISSION_DENIED'),
+      message: this.translate.instant('PLEASE_GRANT_CAMERA_PERMISSION'),
       buttons: ['OK'],
     });
     await alert.present();
@@ -84,8 +96,8 @@ export class Tab2Page implements OnInit {
     const { barcodes } = await BarcodeScanner.scan();
     this.barcodes.push(...barcodes);
 
-    this.check_production_piece(barcodes[0].displayValue)
-}
+    this.check_production_piece(barcodes[0].displayValue);
+  }
 
   /////////////////////////////////////////////////
   // qr-scanner desktop
@@ -94,15 +106,12 @@ export class Tab2Page implements OnInit {
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
 
-    this.check_production_piece(e[0].value)
-
-    // action["start"]().subscribe((r: any) => console.log("start", r), alert);
+    this.check_production_piece(e[0].value);
   }
 
   public scan_desktop(action: any, fn: string) {
     const playDeviceFacingBack = (devices: any[]) => {
-      // front camera or back camera check here!
-      const device = devices.find(f => (/environment|back|rear/gi.test(f.label))); // Default Back Facing Camera
+      const device = devices.find(f => (/environment|back|rear/gi.test(f.label)));
       action.playDevice(device ? device.deviceId : devices[0].deviceId);
     }
 
@@ -116,34 +125,30 @@ export class Tab2Page implements OnInit {
   /////////////////////////////////////////////////
   // common functions:
   ////////////////////////////////////////////////
-  // function to start scanning process
-  // distinguishes between mobile and desktop:
   async scan(action: any, fn: string): Promise<void> {
-    if (!this.isDesktop){ // mobile
-      this.scan_mobile()
-    } else { // desktop
-      this.scan_desktop(action, fn)
+    if (!this.isDesktop) {
+      this.scan_mobile();
+    } else {
+      this.scan_desktop(action, fn);
       this.isDesktopScanning = true;
     }
   }
 
   private isMobile() {
-    // const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    const mobile_array = ["Mobi", "Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini"]
-    console.log(navigator.userAgent)
+    const mobile_array = ["Mobi", "Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini"];
     for (let system of mobile_array) {
-      if (navigator.userAgent.includes(system)){
-          return true;
+      if (navigator.userAgent.includes(system)) {
+        return true;
       }
     }
     return false;
   }
 
-  public display_success_toast(isOpen: boolean){
+  public display_success_toast(isOpen: boolean) {
     this.isSuccessToastOpen = isOpen;
   }
 
-  public display_failure_toast(isOpen: boolean){
+  public display_failure_toast(isOpen: boolean) {
     this.isFailureToastOpen = isOpen;
   }
 
@@ -151,58 +156,61 @@ export class Tab2Page implements OnInit {
   // Starte Zusammenbau:
   ////////////////////////////////////////////////
 
-  public startProduction(){
+  public async startProduction() {
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, 1);
     this.current_workflowstep = this.workflow.get_workflow_partial_step(this.workflowsteps, 1, 1);
     this.current_workflowstep.current_active = true;
     this.image_path_before = this.current_workflowstep.picture_path_before;
     this.image_path_after = this.current_workflowstep.picture_path_after;
+
+    // Use translations
+    this.current_workflowstep.description = await this.translate.get(this.current_workflowstep.description).toPromise();
+    this.current_workflowstep.detail_description = await this.translate.get(this.current_workflowstep.detail_description).toPromise();
   }
 
-  // markiere den aktuellen Montageschritt als erledigt
-  public mark_as_done(step_id:number, partial_step_id: number){
-    this.workflowsteps.forEach((step: any, index: any) => {
+  public mark_as_done(step_id: number, partial_step_id: number) {
+    this.workflowsteps.forEach(async (step: any, index: any) => {
       if (step.step === step_id && step.partial_step === partial_step_id) {
         step.done = true;
         step.current_active = false;
-        this.set_step_active(index + 1)
-        if(this.workflow.step_is_fully_done(this.workflowsteps, step_id)){
-          this.display_next_step(step_id)
+        await this.set_step_active(index + 1);
+        if (this.workflow.step_is_fully_done(this.workflowsteps, step_id)) {
+          this.display_next_step(step_id);
         }
       }
     });
   }
 
-  // markiere den nächsten Montageschritt als todo
-  private set_step_active(index:number){
-    console.log(this.workflowsteps[index])
+  private async set_step_active(index: number) {
     this.workflowsteps[index].current_active = true;
     this.current_workflowstep = this.workflowsteps[index];
     this.image_path_before = this.current_workflowstep.picture_path_before;
     this.image_path_after = this.current_workflowstep.picture_path_after;
+
+    // Use translations
+    this.current_workflowstep.description = await this.translate.get(this.current_workflowstep.description).toPromise();
+    this.current_workflowstep.detail_description = await this.translate.get(this.current_workflowstep.detail_description).toPromise();
   }
 
-  private display_next_step(step_id:number){
-    this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id + 1)
+  private display_next_step(step_id: number) {
+    this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id + 1);
   }
 
+  private check_production_piece(product_code: string) {
+    let scanned_product: ProductPiece = new ProductPiece(JSON.parse(product_code));
 
-  // prueft das gescannte bauteil gegen den aktuellen Montageschritt
-  private check_production_piece(product_code: string){
-    let scanned_product:ProductPiece = new ProductPiece(JSON.parse(product_code))
-
-    if(scanned_product.id == this.current_workflowstep.product_id){
+    if (scanned_product.id == this.current_workflowstep.product_id) {
       this.isDesktopScanning = false;
-      this.display_success_toast(true)
-      this.mark_as_done(this.current_workflowstep.step, this.current_workflowstep.partial_step)
+      this.display_success_toast(true);
+      this.mark_as_done(this.current_workflowstep.step, this.current_workflowstep.partial_step);
     } else {
-      this.display_failure_toast(true)
+      this.display_failure_toast(true);
       this.action["start"]().subscribe((r: any) => console.log("start", r), alert);
     }
   }
 
-  public show_step(step_id: number){
-    this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id)
+  public show_step(step_id: number) {
+    this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id);
   }
 
   getUniqueSteps(): number[] {

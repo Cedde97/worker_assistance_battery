@@ -7,6 +7,7 @@ import {
   ScannerQRCodeResult,
 } from 'ngx-scanner-qrcode';
 import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab3',
@@ -27,7 +28,11 @@ export class Tab3Page implements OnInit {
   screenHeight = window.innerHeight;
   screenWidth = window.innerWidth;
 
-  constructor(private alertController: AlertController) {}
+  constructor(
+    private alertController: AlertController,
+    private translate: TranslateService
+  ) {
+  }
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
@@ -37,7 +42,7 @@ export class Tab3Page implements OnInit {
     }
   }
 
-/////////////////////////////////////////////////
+  /////////////////////////////////////////////////
   // qr-scanner mobile
   ////////////////////////////////////////////////
   async requestPermissions(): Promise<boolean> {
@@ -47,9 +52,9 @@ export class Tab3Page implements OnInit {
 
   async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
-      header: 'Permission denied',
-      message: 'Please grant camera permission to use the barcode scanner.',
-      buttons: ['OK'],
+      header: this.translate.instant('PERMISSION_DENIED'),
+      message: this.translate.instant('PLEASE_GRANT_CAMERA_PERMISSION'),
+      buttons: [this.translate.instant('OK')],
     });
     await alert.present();
   }
@@ -64,17 +69,17 @@ export class Tab3Page implements OnInit {
     this.barcodes.push(...barcodes);
 
     this.show_scanned_product_information(barcodes[0].displayValue)
-}
+  }
 
   /////////////////////////////////////////////////
   // qr-scanner desktop
   ////////////////////////////////////////////////
-  public onEvent(e: ScannerQRCodeResult[], action?: any): void { 
+  public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
     this.show_scanned_product_information(e[0].value)
   }
-  
+
   public scan_desktop(action: any, fn: string) {
     const playDeviceFacingBack = (devices: any[]) => {
       // front camera or back camera check here!
@@ -97,9 +102,8 @@ export class Tab3Page implements OnInit {
   async scan(action: any, fn: string): Promise<void> {
     if (!this.isDesktop){ // mobile
       this.scan_mobile()
-      
     } else { // desktop
-      this.scan_desktop(action, fn) 
+      this.scan_desktop(action, fn)
     }
   }
 
@@ -111,14 +115,12 @@ export class Tab3Page implements OnInit {
       if (navigator.userAgent.includes(system)){
           return true;
       }
-    }  
+    }
     return false;
   }
-  
+
   private show_scanned_product_information(product_code: string){
     this.current_product = new ProductPiece(JSON.parse(product_code))
     this.image_path = this.current_product.img_path;
   }
-
 }
-

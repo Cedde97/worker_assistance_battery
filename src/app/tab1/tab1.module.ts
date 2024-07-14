@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    NgxScannerQrcodeModule
+    NgxScannerQrcodeModule,
+    TranslateModule.forChild()
   ],
   declarations: [Tab1Page]
 })
