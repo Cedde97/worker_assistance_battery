@@ -38,8 +38,6 @@ export class Tab2Page implements OnInit {
   screenHeight = window.innerHeight;
   screenWidth = window.innerWidth;
 
-  ion_card_style = "height: " + this.screenHeight + "px"
-
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
   constructor(private alertController: AlertController, private pageCommunicationService: PageCommunicationService) {

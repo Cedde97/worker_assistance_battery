@@ -1,0 +1,33 @@
+{"id": "1", "serial_number": "000000000001", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Das Bodenstück des Batteriegehäuses. Farbe: Weiß.", "description_english": "The bottom piece of the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_1_find.png"}
+
+{"id": "2", "serial_number": "000000000002", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die obere Druckplatte innerhalb des Batteriegehäuses. Farbe: Orange.", "description_english": "The upper pressure plate inside the battery case. Color: Orange.", "img_path":"./assets/product_pictures/pngs/schritt_2_find.png"}
+
+{"id": "3", "serial_number": "000000000003", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die untere Druckplatte innerhalb des Batteriegehäuses. Farbe: Orange.", "description_english": "The lower pressure plate inside the battery case. Color: Orange.", "img_path":"./assets/product_pictures/pngs/schritt_3_find.png"}
+
+{"id": "4", "serial_number": "000000000004", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die rechte Isolierplatte innerhalb des Batteriegehäuses. Farbe: Grün.", "description_english": "The right insulating plate inside the battery case. Color: Green.", "img_path":"./assets/product_pictures/pngs/schritt_4_find.png"}
+
+{"id": "5", "serial_number": "000000000005", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die linke Isolierplatte innerhalb des Batteriegehäuses. Farbe: Grün.", "description_english": "The left insulating plate inside the battery case. Color: Green.", "img_path":"./assets/product_pictures/pngs/schritt_5_find.png"}
+
+{"id": "6", "serial_number": "000000000006", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die erste Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The first battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_6_find.png"}
+
+{"id": "7", "serial_number": "000000000007", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die zweite Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The second battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_7_find.png"}
+
+{"id": "8", "serial_number": "000000000008", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die dritte Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The third battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_8_find.png"}
+
+{"id": "9", "serial_number": "000000000009", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die vierte Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The fourth battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_9_find.png"}
+
+{"id": "10", "serial_number": "000000000010", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die fünfte Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The fifth battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_10_find.png"}
+
+{"id": "11", "serial_number": "000000000011", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die sechste Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The sixth battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_11_find.png"}
+
+{"id": "12", "serial_number": "000000000012", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die siebte Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The seventh battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_12_find.png"}
+
+{"id": "13", "serial_number": "000000000013", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die achte Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The eighth battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_13_find.png"}
+
+{"id": "14", "serial_number": "000000000014", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die neunte Batteriezelle innerhalb des Batteriegehäuses. Farbe: Weiß.", "description_english": "The ninth battery cell inside the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_14_find.png"}
+
+{"id": "15", "serial_number": "000000000015", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die BMS-Platine, welche auf den Batteriezellen aufliegt. Farbe: Grün.", "description_english": "The BMS circuit board that rests on the battery cells. Color: Green.", "img_path":"./assets/product_pictures/pngs/schritt_15_find.png"}
+
+{"id": "16", "serial_number": "000000000016", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Der Kabelbaum der BMS-Platine. Farbe: Schwarz.", "description_english": "The wiring harness of the BMS circuit board. Color: Black.", "img_path":"./assets/product_pictures/pngs/schritt_16_find.png"}
+
+{"id": "17", "serial_number": "000000000017", "supplier_number": "000000000001", "production_date": "2024-05-13 12:00:00", "description_german": "Die Abdeckplatte des Batteriegehäuses. Farbe: Weiß.", "description_english": "The cover plate of the battery case. Color: White.", "img_path":"./assets/product_pictures/pngs/schritt_17_find.png"}

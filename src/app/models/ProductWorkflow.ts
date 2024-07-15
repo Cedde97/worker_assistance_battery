@@ -17,7 +17,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weisse Bauteil',
         description_english: 'Find the white product',
         description_english_short: 'Find the white product',
-        product_id: 1,
+        product_id: -1,
         picture_path_before: '',
         picture_path_after: './assets/product_pictures/pngs/schritt_1_find.png',
         done: false,
@@ -45,7 +45,7 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie das weisse Bauteil auf der Baufläche.',
         description_english: 'Place the white product in the working space.',
         description_english_short: 'Place the white product in the working space.',
-        product_id: 1,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_1_find.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_1_put.png',
         done: false,
@@ -60,7 +60,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das orange Bauteil.',
         description_english: 'Find the orange product.',
         description_english_short: 'Find the orange product.',
-        product_id: 2,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_1_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_2_find.png',
         done: false,
@@ -88,8 +88,8 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie das orange Bauteil im weißen.',
         description_english: 'Place the orange product in the white product as shown in the illustration.',
         description_english_short: 'Place the orange product in the white one.',
-        product_id: 2,
-        picture_path_before: './assets/product_pictures/pngs/schritt_2_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_1_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_2_put.png',
         done: false,
         current_active: false
@@ -103,7 +103,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das orange Bauteil.',
         description_english: 'Find the orange product.',
         description_english_short: 'Find the orange product.',
-        product_id: 3,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_2_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_3_find.png',
         done: false,
@@ -131,8 +131,8 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie das orange Bauteil im weißen.',
         description_english: 'Place the orange product in the white product as shown in the illustration.',
         description_english_short: 'Place the orange product in the white one.',
-        product_id: 3,
-        picture_path_before: './assets/product_pictures/pngs/schritt_3_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_2_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_3_put.png',
         done: false,
         current_active: false
@@ -146,7 +146,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das grüne Bauteil.',
         description_english: 'Find the green product.',
         description_english_short: 'Find the green product.',
-        product_id: 4,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_3_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_4_find.png',
         done: false,
@@ -174,8 +174,8 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie das grüne Bauteil im weißen.',
         description_english: 'Place the green product in the white product as shown in the illustration.',
         description_english_short: 'Place the green product in the white one.',
-        product_id: 4,
-        picture_path_before: './assets/product_pictures/pngs/schritt_4_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_3_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_4_put.png',
         done: false,
         current_active: false
@@ -189,7 +189,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das grüne Bauteil.',
         description_english: 'Find the green product.',
         description_english_short: 'Find the green product.',
-        product_id: 5,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_4_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_5_find.png',
         done: false,
@@ -217,8 +217,8 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie das grüne Bauteil im weißen.',
         description_english: 'Place the green product in the white product as shown in the illustration.',
         description_english_short: 'Place the green product in the white one.',
-        product_id: 5,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_4_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_5_put.png',
         done: false,
         current_active: false
@@ -234,7 +234,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 6,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
         done: false,
@@ -262,8 +262,8 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 6,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
         done: false,
         current_active: false
@@ -277,9 +277,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 7,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_6_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_7_find.png',
         done: false,
         current_active: false
     };
@@ -292,8 +292,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 7,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_6_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_7_find.png',
         done: false,
         current_active: false
     };
@@ -305,9 +305,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 7,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_6_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_7_put.png',
         done: false,
         current_active: false
     };
@@ -320,9 +320,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 8,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_7_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_8_find.png',
         done: false,
         current_active: false
     };
@@ -335,8 +335,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 8,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_7_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_8_find.png',
         done: false,
         current_active: false
     };
@@ -348,9 +348,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 8,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_7_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_8_put.png',
         done: false,
         current_active: false
     };
@@ -363,9 +363,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 9,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_8_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_9_find.png',
         done: false,
         current_active: false
     };
@@ -378,8 +378,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 9,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_8_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_9_find.png',
         done: false,
         current_active: false
     };
@@ -391,9 +391,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 9,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_8_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_9_put.png',
         done: false,
         current_active: false
     };
@@ -406,9 +406,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 10,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_9_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_10_find.png',
         done: false,
         current_active: false
     };
@@ -421,8 +421,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 10,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_9_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_10_find.png',
         done: false,
         current_active: false
     };
@@ -434,9 +434,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 10,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_9_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_10_put.png',
         done: false,
         current_active: false
     };
@@ -449,9 +449,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 11,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_10_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_11_find.png',
         done: false,
         current_active: false
     };
@@ -464,8 +464,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 11,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_10_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_11_find.png',
         done: false,
         current_active: false
     };
@@ -477,9 +477,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 11,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_11_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_12_find.png',
         done: false,
         current_active: false
     };
@@ -492,9 +492,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 12,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_11_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_12_find.png',
         done: false,
         current_active: false
     };
@@ -507,8 +507,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 12,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_11_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_12_find.png',
         done: false,
         current_active: false
     };
@@ -520,9 +520,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 12,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_12_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_13_find.png',
         done: false,
         current_active: false
     };
@@ -535,9 +535,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 13,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_12_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_13_find.png',
         done: false,
         current_active: false
     };
@@ -550,8 +550,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 13,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_12_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_13_find.png',
         done: false,
         current_active: false
     };
@@ -563,9 +563,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 13,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_13_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_14_find.png',
         done: false,
         current_active: false
     };
@@ -578,9 +578,9 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriezelle.',
         description_english: 'Find the white battery cell.',
         description_english_short: 'Find the white battery cell.',
-        product_id: 14,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_13_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_14_find.png',
         done: false,
         current_active: false
     };
@@ -593,8 +593,8 @@ export class ProductWorkflow {
         description_english: 'Scan the green product',
         description_english_short: 'Scan the green product',
         product_id: 14,
-        picture_path_before: './assets/product_pictures/pngs/schritt_5_put.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_find.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_13_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_14_find.png',
         done: false,
         current_active: false
     };
@@ -606,9 +606,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie weiße Batteriezelle in dem vorher platzierten weißen Bauteil.',
         description_english: 'Place the battery cell in the white product as shown in the illustration.',
         description_english_short: 'Place the battery cell in the white product as shown in the illustration.',
-        product_id: 14,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_14_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_15_find.png',
         done: false,
         current_active: false
     };
@@ -623,8 +623,8 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie die grüne BMS Platine.',
         description_english: 'Find the green BMS slave circuit board.',
         description_english_short: 'Find the green BMS slave circuit board.',
-        product_id: 15,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_14_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_15_find.png',
         done: false,
         current_active: false
@@ -638,7 +638,7 @@ export class ProductWorkflow {
         description_english: 'Scan the green BMS slave circuit board.',
         description_english_short: 'Scan the green BMS slave circuit board.',
         product_id: 15,
-        picture_path_before: './assets/product_pictures/pngs/schritt_6_put.png',
+        picture_path_before: './assets/product_pictures/pngs/schritt_14_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_15_find.png',
         done: false,
         current_active: false
@@ -651,9 +651,9 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie die grüne BMS Platine auf den Batteriezellen.',
         description_english: 'Place green BMS slave circuit board on top of the white battery cells as shown in the illustration.',
         description_english_short: 'Place green BMS slave circuit board on top of the white battery cells as shown in the illustration.',
-        product_id: 15,
-        picture_path_before: './assets/product_pictures/pngs/schritt_15_find.png',
-        picture_path_after: './assets/product_pictures/pngs/schritt_15_put.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_15_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_16_find.png',
         done: false,
         current_active: false
     };
@@ -666,7 +666,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie den schwarzen Kabelbaum.',
         description_english: 'Find the black wiring harness. It is a flat, rectangular, black chip.',
         description_english_short: 'Find the black wiring harness.',
-        product_id: 16,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_15_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_16_find.png',
         done: false,
@@ -694,8 +694,8 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie die grüne BMS Platine auf den Batteriezellen.',
         description_english: 'Place the green black wiring harness on top of the green BMS slave curcuit board as shown in the illustration.',
         description_english_short: 'Place the green black wiring harness as shown in the illustration.',
-        product_id: 16,
-        picture_path_before: './assets/product_pictures/pngs/schritt_16_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_15_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_16_put.png',
         done: false,
         current_active: false
@@ -709,7 +709,7 @@ export class ProductWorkflow {
         description_german_short: 'Suchen Sie das weiße Batteriegehäuse.',
         description_english: 'Find the white housing cover. It is flat, rectangular.',
         description_english_short: 'Find the white housing cover.',
-        product_id: 17,
+        product_id: -1,
         picture_path_before: './assets/product_pictures/pngs/schritt_16_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_17_find.png',
         done: false,
@@ -737,8 +737,8 @@ export class ProductWorkflow {
         description_german_short: 'Platzieren Sie das das weiße Batteriegehäuse.',
         description_english: 'Place the white housing cover as shown in the illustration.',
         description_english_short: 'Place the white housing cover as shown in the illustration.',
-        product_id: 17,
-        picture_path_before: './assets/product_pictures/pngs/schritt_17_find.png',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_16_put.png',
         picture_path_after: './assets/product_pictures/pngs/schritt_17_put.png',
         done: false,
         current_active: false
