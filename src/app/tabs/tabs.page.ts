@@ -13,7 +13,5 @@ export class TabsPage {
 
   invokeTab2ChangeDetailMethod(e:any) {
     this.pageCommunicationService.callTab2ChangeDetailMethod(e.detail.value);
-    console.log("hallo")
-    console.log('ionChange fired with value: ' + e.detail.value);
   }
 }
