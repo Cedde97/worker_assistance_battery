@@ -20,7 +20,14 @@
                   <ion-col size="1.5">
                     <ion-content>
                       <ion-segment *ngIf="current_workflowstep not null" value="Schritt_{{current_workflowstep.step}}">
-                        <ion-segment-button *ngFor="let step of getUniqueSteps()" value="Schritt_{{step}}" (click)="show_step(step)">{{step}}</ion-segment-button>
+                      <ion-segment-button *ngFor="let workflowstep of jumpWorkflowSteps"  
+                                          value="Schritt_{{workflowstep.step}}" 
+                                          (click)="show_step(workflowstep.step)" 
+                                          layout="icon-end">
+                        <ion-label>{{workflowstep.step}}</ion-label>
+                        <ion-icon *ngIf="workflowstep.done" name="checkbox-outline"></ion-icon>
+                        <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
+                      </ion-segment-button>
                       </ion-segment>
                     </ion-content>
                   </ion-col>
@@ -34,8 +41,8 @@
                               <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
                             </ion-col>
                             <ion-col size="9">
-                              <p *ngIf="detail_level == 'detail'">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</p>
-                              <p *ngIf="detail_level == 'short'">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german_short}}</p>
+                              <p style="font-size: medium;" *ngIf="detail_level == 'detail'">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german}}</p>
+                              <p style="font-size: medium;" *ngIf="detail_level == 'short'">Schritt {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_german_short}}</p>
                             </ion-col>
                             <ion-col size="1">
                               <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">Done</ion-button>

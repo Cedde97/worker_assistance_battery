@@ -28,6 +28,7 @@ export class Tab2Page implements OnInit {
   workflowsteps: WorkflowStep[] = this.workflow.get_product_workflow();
   display_workflowsteps: any;
   current_workflowstep: any;
+  jumpWorkflowSteps: WorkflowStep[] = this.workflowsteps.filter(step => step.partial_step === 3);
 
   current_process: String = "";
   current_product_piece: String = "";
@@ -48,7 +49,7 @@ export class Tab2Page implements OnInit {
     }
     this.pageCommunicationService.invokeTab2ChangeDetailMethod$.subscribe((detail_level) => {
       this.changeDetailLevel(detail_level);
-    });
+    });    
   }
 
   changeDetailLevel(detail_level: string) {
@@ -100,6 +101,13 @@ export class Tab2Page implements OnInit {
         }
       }
     });
+
+    // ändere anzeige links auf grün, wenn schritt erfolgreich beendet.
+    let targetStep = this.jumpWorkflowSteps.find(step => step.step === step_id && step.partial_step === partial_step_id);  
+    if (targetStep) {
+      targetStep.done = true;
+    }
+  
   }
 
   // markiere den nächsten Montageschritt als todo
