@@ -48,7 +48,7 @@
                               <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">{{ 'DONE' | translate }}</ion-button>
                               <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1 && !isDesktopScanning" (click)="scan(action, 'start')">{{ 'SCAN' | translate }}</ion-button>
                               <ion-spinner *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning" name="circles"></ion-spinner>
-                              <p *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning">{{ 'PLEASE_SCAN_QR_CODE' | translate }}</p>
+                              <p style="width: 60px;" *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning">{{ 'PLEASE_SCAN_QR_CODE' | translate }}</p>
                             </ion-col>
                           </ion-row>
                         </ion-grid>
