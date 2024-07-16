@@ -14,6 +14,7 @@ import { ScannerService } from '../models/services/scanner.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page implements OnInit {
+  // variables for backend and ui:
   barcodes: Barcode[] = [];
   isDesktop = false;
   isDesktopScanning = false;
@@ -23,21 +24,18 @@ export class Tab2Page implements OnInit {
   isSuccessToastOpen = false;
   isFailureToastOpen = false;
   detail_level = 'detail';
+  screenHeight = window.innerHeight;
+  screenWidth = window.innerWidth;
+  @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
-  // bauanleitung steps:
+  // assembly instruction steps:
   workflow = new ProductWorkflow();
   workflowsteps: WorkflowStep[] = this.workflow.get_product_workflow();
   display_workflowsteps: any;
   current_workflowstep: any;
   jumpWorkflowSteps: WorkflowStep[] = this.workflowsteps.filter(step => step.partial_step === 3);
-
   current_process: String = "";
   current_product_piece: String = "";
-
-  screenHeight = window.innerHeight;
-  screenWidth = window.innerWidth;
-
-  @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
   constructor(
     private translate: TranslateService,
@@ -62,10 +60,6 @@ export class Tab2Page implements OnInit {
     this.translate.use(lang);
   }
 
-  changeDetailLevel(detail_level: string) {
-    this.detail_level = detail_level;
-  }
-
   /////////////////////////////////////////////////
   // common functions:
   ////////////////////////////////////////////////
@@ -78,17 +72,18 @@ export class Tab2Page implements OnInit {
     }
   }
 
+  // handles scan on desktop
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
-
     this.check_production_piece(e[0].value)
   }
 
   /////////////////////////////////////////////////
-  // Starte Zusammenbau:
+  // Worklfow Logic
   ////////////////////////////////////////////////
 
+  // (Re-)Start Workflow:
   public startProduction() {
     this.resetWorkflowSteps(this.workflowsteps);
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, 1);
@@ -98,6 +93,7 @@ export class Tab2Page implements OnInit {
     this.image_path_after = this.current_workflowstep.picture_path_after;
   }
 
+  // resets the workflow
   private resetWorkflowSteps(steps: WorkflowStep[]): void {
     steps.forEach(step => {
         step.done = false;
@@ -105,7 +101,7 @@ export class Tab2Page implements OnInit {
     });
   }
 
-  // markiere den aktuellen Montageschritt als erledigt
+  // mark current workflowstep as done
   public mark_as_done(step_id: number, partial_step_id: number) {
     this.workflowsteps.forEach((step: any, index: any) => {
       if (step.step === step_id && step.partial_step === partial_step_id) {
@@ -118,7 +114,7 @@ export class Tab2Page implements OnInit {
       }
     });
 
-    // ändere anzeige links auf grün, wenn schritt erfolgreich beendet.
+    // marks the step on the overview on the left as done
     let targetStep = this.jumpWorkflowSteps.find(step => step.step === step_id && step.partial_step === partial_step_id);
     if (targetStep) {
       targetStep.done = true;
@@ -126,7 +122,7 @@ export class Tab2Page implements OnInit {
 
   }
 
-  // markiere den nächsten Montageschritt als todo
+  // mark next workflow step as current, so "done"/"scan" button will appear
   private set_step_active(index: number) {
     console.log(this.workflowsteps[index]);
     this.workflowsteps[index].current_active = true;
@@ -135,11 +131,12 @@ export class Tab2Page implements OnInit {
     this.image_path_after = this.current_workflowstep.picture_path_after;
   }
 
+  // changes to the next step in ui
   private display_next_step(step_id: number) {
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id + 1);
   }
 
-  // prüft das gescannte Bauteil gegen den aktuellen Montageschritt
+  // checks the currently scanned product piece with the current workflow step
   public check_production_piece(product_code: string) {
     let scanned_product: ProductPiece = new ProductPiece(JSON.parse(product_code));
 
@@ -153,19 +150,23 @@ export class Tab2Page implements OnInit {
     }
   }
 
+  // display step in ui
   public show_step(step_id: number) {
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, step_id);
   }
 
-  getUniqueSteps(): number[] {
-    return [...new Set(this.workflowsteps.map(step => step.step))];
-  }
-
+  // shows success toast on correctly scanned product
   public display_success_toast(isOpen: boolean) {
     this.isSuccessToastOpen = isOpen;
   }
 
+  // shows failure toast on wrong scanned product
   public display_failure_toast(isOpen: boolean) {
     this.isFailureToastOpen = isOpen;
+  }
+
+  // changes detail level of the assembly instructions
+  private changeDetailLevel(detail_level: string) {
+    this.detail_level = detail_level;
   }
 }
