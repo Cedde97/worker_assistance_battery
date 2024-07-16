@@ -36,3 +36,5 @@ Start assembly instructions:
 
 Product information page: 
 ![](./readmepics/scanned_product_information.png)
+
+To add or change existing workflowsteps go to [this file](https://github.com/Cedde97/worker_assistance_battery/blob/master/src/app/models/ProductWorkflow.ts)
