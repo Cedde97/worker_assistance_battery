@@ -26,11 +26,9 @@ export class TabsPage {
 
   invokeTab2ChangeDetailMethod(e: any) {
     this.pageCommunicationService.callTab2ChangeDetailMethod(e.detail.value);
-    console.log("ionChange fired with value: " + e.detail.value);
   }
 
   changeLanguage(e: any) {
-    console.log("Language changed to: " + e.detail.value);
     const selectedLanguage = e.detail.value;
     this.translate.use(selectedLanguage).subscribe(() => {
       this.cdr.detectChanges(); // Force update the view

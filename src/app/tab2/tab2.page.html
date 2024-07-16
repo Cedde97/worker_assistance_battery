@@ -19,14 +19,21 @@
                 <ion-row>
                   <ion-col size="1.5">
                     <ion-content>
-                      <ion-segment *ngIf="current_workflowstep not null" value="schritt_{{current_workflowstep.step}}">
-                        <ion-segment-button *ngFor="let step of getUniqueSteps()" [value]="'Schritt ' + step" (click)="show_step(step)">{{ 'STEP' | translate }} {{step}}</ion-segment-button>
+                      <ion-segment *ngIf="current_workflowstep not null" value="Schritt_{{current_workflowstep.step}}">
+                      <ion-segment-button *ngFor="let workflowstep of jumpWorkflowSteps"
+                                          value="Schritt_{{workflowstep.step}}"
+                                          (click)="show_step(workflowstep.step)"
+                                          layout="icon-end">
+                        <ion-label>{{workflowstep.step}}</ion-label>
+                        <ion-icon *ngIf="workflowstep.done" name="checkbox-outline"></ion-icon>
+                        <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
+                      </ion-segment-button>
                       </ion-segment>
                     </ion-content>
                   </ion-col>
                   <ion-col size="10.5">
-                    <ion-list>
-                      <ion-item *ngFor="let workflowstep of display_workflowsteps">
+                    <ion-list style="height: {{screenHeight*0.6}}px">
+                      <ion-item style="height: {{screenHeight*0.6/3}}px; text-align: left;" *ngFor="let workflowstep of display_workflowsteps">
                         <ion-grid>
                           <ion-row>
                             <ion-col size="1">
