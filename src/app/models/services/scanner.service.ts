@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
-import { ScannerQRCodeResult } from 'ngx-scanner-qrcode';
-import { Tab2Page } from '../../tab2/tab2.page';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +9,13 @@ export class ScannerService {
 
   constructor(private alertController: AlertController) {}
 
+  // requesting camera access if not given
   async requestPermissions(): Promise<boolean> {
     const { camera } = await BarcodeScanner.requestPermissions();
     return camera === 'granted' || camera === 'limited';
   }
 
+  // show alert for camera request
   async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Permission denied',
@@ -25,6 +25,7 @@ export class ScannerService {
     await alert.present();
   }
 
+  // function to scan on mobile device
   async scan_mobile(barcodes: Barcode[], check_production_piece: (value: string) => void): Promise<void> {
     const granted = await this.requestPermissions();
     if (!granted) {
@@ -37,28 +38,7 @@ export class ScannerService {
     check_production_piece(newBarcodes[0].displayValue);
   }
 
-  /*
-  onEvent(e: ScannerQRCodeResult[], action?: any, callingComponent?: any): void {
-    if (callingComponent instanceof Tab2Page) {
-      this.onEventTab2(e, action);
-      component.scannedResults.push(e[0].value);
-    action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
-
-    component.check_production_piece(e[0].value);
-    } else if (callingComponent instanceof Tab3Page) {
-      this.onEventTab3(e, action);
-    } else {
-      console.log("Unknown calling component");
-    }
-  }
-
-  onEvent(e: ScannerQRCodeResult[], action: any, component: Tab2Page): void { // Updated to include component type
-    
-
-    
-  }
-  */
-
+  // function to scan on desktop
   scan_desktop(action: any, fn: string): void {
     const playDeviceFacingBack = (devices: any[]) => {
       const device = devices.find(f => (/environment|back|rear/gi.test(f.label))); // Default Back Facing Camera
@@ -72,6 +52,8 @@ export class ScannerService {
     }
   }
 
+  // function to distinguish between mobil or pc browser
+  // need for separate scanning modules
   isMobile(): boolean {
     const mobile_array = ["Mobi", "Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini"];
     console.log(navigator.userAgent);

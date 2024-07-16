@@ -11,19 +11,17 @@ import { ScannerService } from '../models/services/scanner.service'; // Stellen 
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page implements OnInit {
+  // variables for backend and ui:
   barcodes: Barcode[] = [];
   isDesktop = false;
   isDesktopScanning = false;
   scannedResults: String[] = [];
   isScanning = false;
-
   image_path: string = "";
   empty_product: string = '{"id": "", "serial_number": "", "supplier_number": "", "production_date": ""}';
   current_product: ProductPiece = new ProductPiece(JSON.parse(this.empty_product));
-
   screenHeight = window.innerHeight;
   screenWidth = window.innerWidth;
-
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
 
   constructor(
@@ -32,12 +30,14 @@ export class Tab3Page implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.isDesktop = !this.scannerService.isMobile(); // Auf isMobile-Funktion des ScannerService zugreifen
+    this.isDesktop = !this.scannerService.isMobile();
   }
 
   /////////////////////////////////////////////////
   // common functions:
   ////////////////////////////////////////////////
+  // function to start scanning process
+  // distinguishes between mobile and desktop:
   async scan(action: any, fn: string): Promise<void> {
     if (!this.isDesktop) {
       await this.scannerService.scan_mobile(this.barcodes, this.show_scanned_product_information.bind(this));
@@ -47,6 +47,7 @@ export class Tab3Page implements OnInit {
     }
   }
 
+  // handles scan on desktop
   public onEvent(e: ScannerQRCodeResult[], action?: any): void { 
     this.scannedResults.push(e[0].value);
     action["stop"]().subscribe((r: any) => console.log("stop", r), alert);
@@ -57,12 +58,10 @@ export class Tab3Page implements OnInit {
   /////////////////////////////////////////////////
   // business logic:
   ////////////////////////////////////////////////
+
+  // displays information of the scanned product on the page
   private show_scanned_product_information(product_code: string){
     this.current_product = new ProductPiece(JSON.parse(product_code))
     this.image_path = this.current_product.img_path;
-  }
-
-  private isMobile() {
-    return this.scannerService.isMobile(); // Direkt auf isMobile-Funktion des ScannerService zugreifen
   }
 }
