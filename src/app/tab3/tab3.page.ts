@@ -28,7 +28,7 @@ export class Tab3Page implements OnInit {
   constructor(
     private alertController: AlertController,
     public scannerService: ScannerService, // ScannerService einfügen
-    private translate: TranslateService
+    public translate: TranslateService
   ) {}
 
   ngOnInit() {
