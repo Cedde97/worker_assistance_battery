@@ -96,10 +96,6 @@ export class Tab2Page implements OnInit {
     this.current_workflowstep.current_active = true;
     this.image_path_before = this.current_workflowstep.picture_path_before;
     this.image_path_after = this.current_workflowstep.picture_path_after;
-
-    // Use translations
-    this.current_workflowstep.description = await this.translate.get(this.current_workflowstep.description).toPromise();
-    this.current_workflowstep.detail_description = await this.translate.get(this.current_workflowstep.detail_description).toPromise();
   }
 
   private resetWorkflowSteps(steps: WorkflowStep[]): void {
@@ -137,10 +133,6 @@ export class Tab2Page implements OnInit {
     this.current_workflowstep = this.workflowsteps[index];
     this.image_path_before = this.current_workflowstep.picture_path_before;
     this.image_path_after = this.current_workflowstep.picture_path_after;
-
-    // Use translations
-    this.current_workflowstep.description = await this.translate.get(this.current_workflowstep.description).toPromise();
-    this.current_workflowstep.detail_description = await this.translate.get(this.current_workflowstep.detail_description).toPromise();
   }
 
   private display_next_step(step_id: number) {
