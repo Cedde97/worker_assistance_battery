@@ -10,6 +10,7 @@ export class PageCommunicationService {
 
   constructor() { }
 
+  // changes the detail level of the assembly instructions
   callTab2ChangeDetailMethod(detail_level:string) {
     this.invokeTab2ChangeDetailMethod.next(detail_level);
   }
