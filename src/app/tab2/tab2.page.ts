@@ -82,11 +82,19 @@ export class Tab2Page implements OnInit {
   ////////////////////////////////////////////////
 
   public startProduction() {
+    this.resetWorkflowSteps(this.workflowsteps);
     this.display_workflowsteps = this.workflow.get_workflow_by_step(this.workflowsteps, 1);
     this.current_workflowstep = this.workflow.get_workflow_partial_step(this.workflowsteps, 1, 1);
     this.current_workflowstep.current_active = true;
     this.image_path_before = this.current_workflowstep.picture_path_before;
     this.image_path_after = this.current_workflowstep.picture_path_after;
+  }
+
+  private resetWorkflowSteps(steps: WorkflowStep[]): void {
+    steps.forEach(step => {
+        step.done = false;
+        step.current_active = false;
+    });
   }
 
   // markiere den aktuellen Montageschritt als erledigt

@@ -743,6 +743,21 @@ export class ProductWorkflow {
         done: false,
         current_active: false
     };
+
+    //------------------- Finished ----------------------------
+    workflowstep_finished: WorkflowStep = {
+        step: 18,
+        partial_step: 1,
+        description_german: 'Sie haben die Batterie erfolgreich zusammengebaut.',
+        description_german_short: 'Sie haben die Batterie erfolgreich zusammengebaut.',
+        description_english: 'You successfully built the battery.',
+        description_english_short: 'You successfully built the battery.',
+        product_id: -1,
+        picture_path_before: './assets/product_pictures/pngs/schritt_17_put.png',
+        picture_path_after: './assets/product_pictures/pngs/schritt_17_put.png',
+        done: true,
+        current_active: false
+    };
     
 
 
@@ -816,6 +831,8 @@ export class ProductWorkflow {
         this.workflow_step_array.push(this.workflowstep17_1);
         this.workflow_step_array.push(this.workflowstep17_2);
         this.workflow_step_array.push(this.workflowstep17_3);
+
+        this.workflow_step_array.push(this.workflowstep_finished);
 
     }
 
