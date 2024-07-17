@@ -33,6 +33,14 @@ To deploy application on ios device (https://ionicframework.com/docs/angular/you
 4. Open Xcode studio to deploy to device by:
 ```ionic cap open ios```
 
+The application supports multiple languages, to add another language:
+1. Go to ```src/assets/i18n``` and copy one of the json files.
+2. Name the file after the abbreviation of that language's name.
+3. Go into the file and replace all the strings with their translations.
+
+When adding new strings that are displayed in the application use these strings and the
+ngx-translate/core module accordingly like in the rest of the application.
+
 Landing Page:
 ![](./readmepics/landing_page.png)
 
