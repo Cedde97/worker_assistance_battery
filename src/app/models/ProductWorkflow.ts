@@ -8,11 +8,11 @@ export class ProductWorkflow {
     workflowstep1_1: WorkflowStep = {
         step: 1,
         partial_step: 1,
-        description: 'PRODUCT_WORKFLOW.STEP_1_1_DETAIL',
+        description: 'PRODUCT_WORKFLOW.STEP_1_1_DETAIL', // add description and short description in i18n folder
         description_short: 'PRODUCT_WORKFLOW.STEP_1_1',
-        product_id: -1,
-        picture_path_before: '',
-        picture_path_after: './assets/product_pictures/pngs/schritt_1_find.png',
+        product_id: -1, // if -1, no scan is needed. else the scanned product has to match this id
+        picture_path_before: '', // add product picture after
+        picture_path_after: './assets/product_pictures/pngs/schritt_1_find.png', // add product picture after
         done: false,
         current_active: false
     };
