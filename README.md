@@ -42,7 +42,7 @@ The application supports multiple languages, to add another language:
 When adding new strings that are displayed in the application use these strings and the
 ngx-translate/core module accordingly like in the rest of the application.
 
-To add or change existing workflowsteps go to [this file](https://github.com/Cedde97/worker_assistance_battery/blob/master/src/app/models/ProductWorkflow.ts)
+To add or change existing assembly instructions go to [this file](https://github.com/Cedde97/worker_assistance_battery/blob/master/src/app/models/ProductWorkflow.ts)
 
 Landing Page:
 ![](./readmepics/landing_page.png)
