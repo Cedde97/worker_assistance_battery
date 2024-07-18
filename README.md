@@ -1,9 +1,10 @@
 Project created by using https://ionicframework.com/<br />
 
 Requirements to run:<br />
-1. Install frameworks by:<br />
+1. Install Node.js Package Manager https://nodejs.org/en/download/package-manager <br />
+2. Open Project and install frameworks by:<br />
 ```npm install```
-2. Run this application on browser by:<br />
+3. Run this application on browser by:<br />
 ```ionic serve```
 in the root directoy.<br />
 
