@@ -44,6 +44,10 @@ ngx-translate/core module accordingly like in the rest of the application.
 
 To add or change existing assembly instructions go to [this file](https://github.com/Cedde97/worker_assistance_battery/blob/master/src/app/models/ProductWorkflow.ts)
 
+Find the last workflowstep and increase the id by the number of steps you want to add. Add workflowstepXX_X as need in the file. Make sure to add the new workflowstep in the constructor as well by: <br />
+```this.workflow_step_array.push(this.workflowstepXX_X);```
+The descriptions need to be added in the [language folder](https://github.com/Cedde97/worker_assistance_battery/tree/master/src/assets/i18n).
+
 Landing Page:
 ![](./readmepics/landing_page.png)
 

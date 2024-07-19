@@ -14,7 +14,7 @@
         <ion-col>
           <ion-card style="height: {{screenHeight*0.75}}px">
             <ion-card-title style="text-align: center;">{{ 'ASSEMBLY_INSTRUCTIONS' | translate }}</ion-card-title>
-            <ion-card-content>
+            <ion-card-content style="padding: 0%;">
               <ion-grid>
                 <ion-row>
                   <ion-col size="1.5">
@@ -31,29 +31,25 @@
                       </ion-segment>
                     </ion-content>
                   </ion-col>
-                  <ion-col size="10.5">
-                    <ion-list style="height: {{screenHeight*0.6}}px">
-                      <ion-item style="height: {{screenHeight*0.6/3}}px; text-align: left;" *ngFor="let workflowstep of display_workflowsteps">
-                        <ion-grid>
-                          <ion-row>
-                            <ion-col size="1">
-                              <ion-icon *ngIf="workflowstep.done" name="checkbox-outline"></ion-icon>
-                              <ion-icon *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
-                            </ion-col>
-                            <ion-col size="9">
-                              <ion-input *ngIf="detail_level == 'detail'" type="text">{{ 'STEP' | translate }} {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description | translate}}</ion-input>
-                              <ion-input *ngIf="detail_level == 'short'" type="text">{{ 'STEP' | translate }} {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_short | translate}}</ion-input>
-                            </ion-col>
-                            <ion-col size="1">
-                              <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">{{ 'DONE' | translate }}</ion-button>
-                              <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1 && !isDesktopScanning" (click)="scan(action, 'start')">{{ 'SCAN' | translate }}</ion-button>
-                              <ion-spinner *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning" name="circles"></ion-spinner>
-                              <p style="width: 60px;" *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning">{{ 'PLEASE_SCAN_QR_CODE' | translate }}</p>
-                            </ion-col>
-                          </ion-row>
-                        </ion-grid>
-                      </ion-item>
-                    </ion-list>
+                  <ion-col size="10.5" style="margin: 0px;">
+                    <ion-grid>
+                      <ion-row style="height: {{screenHeight*0.6/3}}px; text-align: left;" *ngFor="let workflowstep of display_workflowsteps">
+                        <ion-col size="0.5">
+                          <ion-icon style="margin-top: 15px;" *ngIf="workflowstep.done" name="checkbox-outline"></ion-icon>
+                          <ion-icon style="margin-top: 15px;" *ngIf="!workflowstep.done" name="square-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="8.5" style="font-size: larger; color: black;">
+                          <ion-input *ngIf="detail_level == 'detail'" type="text">{{ 'STEP' | translate }} {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description | translate}}</ion-input>
+                          <ion-input *ngIf="detail_level == 'short'" type="text">{{ 'STEP' | translate }} {{workflowstep.step}}_{{workflowstep.partial_step}}: {{workflowstep.description_short | translate}}</ion-input>
+                        </ion-col>
+                        <ion-col size="2">
+                          <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id == -1" (click)="mark_as_done(workflowstep.step, workflowstep.partial_step)">{{ 'DONE' | translate }}</ion-button>
+                          <ion-button *ngIf="workflowstep.current_active && workflowstep.product_id != -1 && !isDesktopScanning" (click)="scan(action, 'start')">{{ 'SCAN' | translate }}</ion-button>
+                          <ion-spinner *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning" name="circles"></ion-spinner>
+                          <p style="width: 60px;" *ngIf="workflowstep.current_active && isDesktop && isDesktopScanning">{{ 'PLEASE_SCAN_QR_CODE' | translate }}</p>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -65,11 +61,11 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-input type="text">{{ 'BEFORE' | translate }}:</ion-input>
+                  <ion-input style="font-size: larger; font-weight: bold; color: black;" type="text">{{ 'BEFORE' | translate }}:</ion-input>
                   <ion-img *ngIf="image_path_before != ''" [src]='image_path_before' style="height:80%; width: 80%;"></ion-img>
                 </ion-col>
                 <ion-col>
-                  <ion-input type="text">{{ 'AFTER' | translate }}:</ion-input>
+                  <ion-input style="font-size: larger; font-weight: bold; color: black;" type="text">{{ 'AFTER' | translate }}:</ion-input>
                   <ion-img *ngIf="image_path_after != ''" [src]='image_path_after' style="height:80%; width: 80%;"></ion-img>
                 </ion-col>
               </ion-row>
